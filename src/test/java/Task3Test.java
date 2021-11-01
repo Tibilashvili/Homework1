@@ -32,7 +32,7 @@ public class Task3Test extends TestCase {
         assertEquals(expectedList, result);
     }
 
-    @Test
+  @Test
     public void testArrayListSort2() {
         cube = new Cube(2);
         sphere = new Sphere(2);
@@ -48,6 +48,7 @@ public class Task3Test extends TestCase {
         }
         assertEquals(expectedList, result);
     }
+
 
 
 

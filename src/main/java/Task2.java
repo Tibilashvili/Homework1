@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Task2 {
 
-    public static List readFromFile(List<String> arrayList){
+    public static List<String> readFromFile(List<String> arrayList) {
         try (Scanner scanner = new Scanner(new File("src/main/java/file.txt"))) {
             while (scanner.hasNext()) {
                 arrayList.add(scanner.nextLine());
@@ -18,13 +18,12 @@ public class Task2 {
     }
 
 
-
-    public static List hashtag(List<String> arrayList) {
+    public static List<String> hashtag(List<String> arrayList) {
 
         TreeMap<String, Integer> wordsCount = new TreeMap<>();
 
 
-
+        int count = 0;
         String[] newArray;
 
         for (String s : arrayList) {
@@ -34,13 +33,16 @@ public class Task2 {
             HashSet<String> hashSet = new HashSet<>(newArrayList);
 
 
+
+
             for (String a : hashSet) {
 
 
                 if (a.startsWith("#")) {
+                    count++;
 
 
-                   if(a.endsWith(".") || a.endsWith(",") || a.endsWith("!")){
+                    if (a.endsWith(".") || a.endsWith(",") || a.endsWith("!")) {
                         a = a.substring(0, a.length() - 1);
                     }
 
@@ -58,20 +60,33 @@ public class Task2 {
                 }
 
 
+
+
             }
 
         }
 
 
 
+
         List list = new ArrayList<>(wordsCount.entrySet());
 
-        return getTop5(list);
+        List<String> noHashtag = new ArrayList<>();
+        noHashtag.add("Слов с хештегами нет");
+
+
+        if(count > 0){
+            return getTop(list);
+        }
+
+        else{
+            return noHashtag;
+        }
 
 
     }
 
-    public static List getTop5(List list) {
+    public static List<String> getTop(List list) {
 
         Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
             @Override
@@ -81,16 +96,21 @@ public class Task2 {
         });
 
 
-
         List newList = new ArrayList();
 
-        for (int i = 0; i < 5; i++) {
-            newList.add(list.get(i));
+        if(list.size() < 6){
+            for (int i = 0; i < list.size(); i++){
+                newList.add(list.get(i));
+            }
         }
+
+        else if(list.size() > 5){
+            for (int i = 0; i < 5; i++){
+                newList.add(list.get(i));
+            }
+        }
+
 
         return newList;
     }
-
-
-
 }

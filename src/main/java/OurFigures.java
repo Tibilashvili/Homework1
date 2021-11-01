@@ -1,7 +1,11 @@
   class Cube implements Figure {
-        private int edge;
+        private Integer edge;
 
-        public Cube(int edge) {
+        public Cube(Integer edge) {
+            if(edge == null || edge < 0)
+            {
+                throw new IllegalArgumentException("Не может быть отрицательным или иметь значение null");
+            }
             this.edge = edge;
         }
 
@@ -13,9 +17,12 @@
   }
 
        class Sphere implements Figure {
-           private int radius;
+           private Integer radius;
 
-           public Sphere(int radius) {
+           public Sphere(Integer radius) {
+               if(radius == null || radius < 0){
+                   throw new IllegalArgumentException("Не может быть отрицательным или иметь значение null");
+                   }
                this.radius = radius;
            }
 
@@ -30,13 +37,17 @@
 
 
     class Сylinder implements Figure {
-        private int radius;
-        private int high;
+        private Integer radius;
+        private Integer high;
 
-        public Сylinder(int radius, int high) {
+        public Сylinder(Integer radius, Integer high) {
+            if (radius == null || radius < 0 || high == null || high < 0) {
+                throw new IllegalArgumentException("Не может быть отрицательным или иметь значение null");
+            }
             this.radius = radius;
             this.high = high;
         }
+
 
         @Override
         public double getVolume() {

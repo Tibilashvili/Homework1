@@ -13,14 +13,16 @@ public class Task1Test extends TestCase {
 
     }
 
-    @Test
-    public void testSortArray() {
+     @Test
+     public void testSortArray() {
       int myArray [] = {-67, -700, -1, 24, 0, 78, 11, 2};
       int trueResult [] = {78, 24, 11, 2};
-      assertArrayEquals(trueResult, Task1.sortArray(myArray));
+      assertArrayEquals(trueResult, Task1.sortArray(myArray)); }
+
+
 
     }
 
 
-}
+
 
