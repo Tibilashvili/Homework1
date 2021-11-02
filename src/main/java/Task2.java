@@ -20,70 +20,69 @@ public class Task2 {
 
     public static List<String> hashtag(List<String> arrayList) {
 
-        TreeMap<String, Integer> wordsCount = new TreeMap<>();
+        List<String> weHaveNull = new ArrayList<>();
+        weHaveNull.add("we have null");
 
+        TreeMap<String, Integer> wordsCount = new TreeMap<>();
 
         int count = 0;
         String[] newArray;
 
-        for (String s : arrayList) {
+        if ((arrayList != null) && (!arrayList.isEmpty())) {
 
-            List<String> newArrayList = Arrays.asList(s.split(" "));
+            for (String s : arrayList) {
 
-            HashSet<String> hashSet = new HashSet<>(newArrayList);
+                List<String> newArrayList = Arrays.asList(s.split(" "));
 
-
-
-
-            for (String a : hashSet) {
+                HashSet<String> hashSet = new HashSet<>(newArrayList);
 
 
-                if (a.startsWith("#")) {
-                    count++;
+                for (String a : hashSet) {
 
 
-                    if (a.endsWith(".") || a.endsWith(",") || a.endsWith("!")) {
-                        a = a.substring(0, a.length() - 1);
-                    }
-
-                    if (wordsCount.containsKey(a)) {
-
-                        wordsCount.put(a, wordsCount.get(a) + 1);
+                    if (a.startsWith("#")) {
+                        count++;
 
 
-                    } else {
+                        if (a.endsWith(".") || a.endsWith(",") || a.endsWith("!")) {
+                            a = a.substring(0, a.length() - 1);
+                        }
 
-                        wordsCount.put(a, 1);
+                        if (wordsCount.containsKey(a)) {
+
+                            wordsCount.put(a, wordsCount.get(a) + 1);
+
+
+                        } else {
+
+                            wordsCount.put(a, 1);
+                        }
+
+
                     }
 
 
                 }
 
-
-
-
             }
 
+
+            List list = new ArrayList<>(wordsCount.entrySet());
+
+            List<String> noHashtag = new ArrayList<>();
+            noHashtag.add("Слов с хештегами нет");
+
+
+            if (count > 0) {
+                return getTop(list);
+            } else {
+                return noHashtag;
+            }
+
+
         }
 
-
-
-
-        List list = new ArrayList<>(wordsCount.entrySet());
-
-        List<String> noHashtag = new ArrayList<>();
-        noHashtag.add("Слов с хештегами нет");
-
-
-        if(count > 0){
-            return getTop(list);
-        }
-
-        else{
-            return noHashtag;
-        }
-
-
+        else return weHaveNull;
     }
 
     public static List<String> getTop(List list) {

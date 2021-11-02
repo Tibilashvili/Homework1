@@ -10,6 +10,10 @@ public class Task3Test extends TestCase {
     Figure sphere;
     Figure cylinder;
     List<Figure> figures = new ArrayList<>();
+    ArrayList arrayList1 = new ArrayList();
+    List<String> expectedList = new ArrayList<>();
+
+
 
     @Before
     protected void setUp() {
@@ -19,7 +23,11 @@ public class Task3Test extends TestCase {
         figures.add(cube);
         figures.add(sphere);
         figures.add(cylinder);
+
+        arrayList1.add("we have null");
     }
+
+
 
 
     @Test
@@ -49,7 +57,24 @@ public class Task3Test extends TestCase {
         assertEquals(expectedList, result);
     }
 
+    @Test
+    public void testArrayListSort3() {
+        assertEquals(arrayList1, Task3.arrayListSort(null));
+    }
 
+
+    @Test
+    public void testArrayListSort4() {
+        cube = new Cube(2);
+        sphere = new Sphere(2);
+        cylinder = new Сylinder(2,2);
+
+        figures.add(null);
+        figures.add(cylinder);
+        figures.add(sphere);
+        List<String> result = Task3.arrayListSort(figures);
+        assertEquals(arrayList1, result);
+    }
 
 
 }
